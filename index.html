@@ -103,6 +103,12 @@
     </div>
 
     <script>
+        // Bloquear botón de retroceso
+        window.history.pushState(null, '', window.location.href);
+        window.onpopstate = function() {
+            window.history.pushState(null, '', window.location.href);
+        };
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
@@ -120,7 +126,7 @@
                 loading.style.display = "none";
 
                 if (username === validUsername && password === validPassword) {
-                    window.location.href = "https://automation-armada.github.io/Home/";
+                    window.location.replace("https://automation-armada.github.io/Home/");
                 } else {
                     errorMessage.textContent = "Usuario o contraseña incorrectos.";
                     errorMessage.style.display = "block";
